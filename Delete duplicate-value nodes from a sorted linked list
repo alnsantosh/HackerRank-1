@@ -1,0 +1,38 @@
+/*
+You're given the pointer to the head node of a sorted linked list, where the data in the nodes 
+is in ascending order. Delete as few nodes as possible so that the list does not contain 
+any value more than once. The given head pointer may be null indicating that the list is empty.
+*/
+
+    static SinglyLinkedListNode removeDuplicates(SinglyLinkedListNode head) {
+        if (head != null && head.next != null) {
+            
+            SinglyLinkedListNode curr = head;
+            
+            while (curr != null) {
+                
+                int currData = curr.data;
+                SinglyLinkedListNode iterPrev = curr;
+                SinglyLinkedListNode iter = iterPrev.next;
+                
+                while ( iter != null ) {
+                    
+                    if (iter.data == currData) {
+                        iterPrev.next = iter.next;
+                        iter.next = null;
+                        iter = iterPrev.next;
+                    } else {
+                        iterPrev = iterPrev.next;
+                        iter = iterPrev.next;
+                    }
+                    
+                }
+                
+                curr = curr.next;
+            }
+            
+        }
+        
+        return head;
+        
+    }
